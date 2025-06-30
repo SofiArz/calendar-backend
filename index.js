@@ -4,7 +4,10 @@ require('dotenv').config();
 const app = express();
 
 //public directory
-app.use( express.static('public'));
+app.use(express.static('public'));
+
+//read and parse body
+app.use(express.json())
 
 //routes
 app.use('/api/auth', require('./routes/auth'));

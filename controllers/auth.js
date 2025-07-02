@@ -22,14 +22,14 @@ const createUser = async (req, res = response) => {
 
         await user.save();
 
-        res.status(201).json({
+        return res.status(201).json({
             ok: true,
             uid: user.id,
             name: user.name
         })
     }
     catch (error) {
-        res.status(500).json()({
+        return res.status(500).json()({
             ok: false,
             msg: 'An unexpected error has occurred on our server. Please try again later.'
         })
@@ -40,12 +40,39 @@ const createUser = async (req, res = response) => {
 const authenticateUser = (req, res = response) => {
     const { email, password } = req.body
 
-    res.status(200).json({
-        ok: true,
-        msg: 'login',
-        email,
-        password
-    })
+    try {
+        let user = User.findOne({ email });
+
+        if (!user) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Incorrect email or password. Please check your credentials and try again.'
+            })
+        }
+
+        validPassword = bcrypt.compareSync(password, user.password);
+
+        if (!validPassword) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Incorrect email or password. Please check your credentials and try again.'
+            })
+        }
+
+        //TO DO: credentials valid generate JWT
+
+        return res.status(200).json({
+            ok: true,
+            uid: user.id,
+            name: user.name
+        })
+    }
+    catch (error) {
+        return res.status(500).json()({
+            ok: false,
+            msg: 'An unexpected error has occurred on our server. Please try again later.'
+        })
+    }
 }
 
 const refreshToken = (req, res = response) => {

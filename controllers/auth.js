@@ -80,11 +80,25 @@ const authenticateUser = async (req, res = response) => {
     }
 }
 
-const refreshToken = (req, res = response) => {
-    res.json({
-        ok: true,
-        msg: 'refresh'
-    })
+const refreshToken = async (req, res = response) => {
+    try {
+        const { uid, name } = req;
+
+        const token = await generateJWT(uid, name);
+
+        return res.status(200).json({
+            ok: true,
+            uid,
+            name,
+            token
+        })
+    }
+    catch (error) {
+        return res.status(401).json({
+            ok: false,
+            msg: 'Token refresh failed. Check the credentials provided and try again.'
+        });
+    }
 }
 
 module.exports = {

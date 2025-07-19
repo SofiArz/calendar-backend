@@ -18,6 +18,7 @@ app.use(express.json());
 
 //routes
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/events', require('./routes/events'));
 
 // Launch the server and listen for incoming requests on port 4000
 app.listen(process.env.PORT, () => {

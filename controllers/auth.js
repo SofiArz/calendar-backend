@@ -33,7 +33,7 @@ const createUser = async (req, res = response) => {
         })
     }
     catch (error) {
-        return res.status(500).json()({
+        return res.status(500).json({
             ok: false,
             msg: 'An unexpected error has occurred on our server. Please try again later.'
         })
@@ -73,7 +73,7 @@ const authenticateUser = async (req, res = response) => {
         })
     }
     catch (error) {
-        return res.status(500).json()({
+        return res.status(500).json({
             ok: false,
             msg: 'An unexpected error has occurred on our server. Please try again later.'
         })

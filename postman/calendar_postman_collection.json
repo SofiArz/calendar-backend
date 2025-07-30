@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "3c75a227-14ac-4239-8fef-6505cd870019",
+		"name": "Calendar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "10948811"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Carolina\",\r\n    \"email\": \"carolina@gmail.com\",\r\n    \"password\": \"Carolina.2007!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"carolina@gmail.com\",\r\n    \"password\": \"Carolina.2007!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "refreshToken",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODY0OWI1NzcxZmYyNTU4ZGVkYzczMmYiLCJuYW1lIjoiU29maWEiLCJpYXQiOjE3NTIwODU5NTQsImV4cCI6MTc1MjA5MzE1NH0.JRWWIfgDT-GlimYWsCTQg5IT4Q_epK9hjUtyDwyS75Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/auth/refresh"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "getEvents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODY1NDI3YTY5MDkzOWM2MWQ1MmQ1ZmQiLCJuYW1lIjoiQ2Fyb2xpbmEiLCJpYXQiOjE3NTM0NTA1NzIsImV4cCI6MTc1MzQ1Nzc3Mn0._IG6ddH6J6xLVlUxEMSY8c7ZlpzlysaXFkTgpK9v7dQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/events",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createEvent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODY1NDI3YTY5MDkzOWM2MWQ1MmQ1ZmQiLCJuYW1lIjoiQ2Fyb2xpbmEiLCJpYXQiOjE3NTM0NTAxNTcsImV4cCI6MTc1MzQ1NzM1N30.Cly0lK1d7qGcg42aLQxYSMuAy5tSiQ31WyQtTuoRS7Q",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"My second event\",\r\n    \"start\": \"2025-07-25T13:00:00.000Z\",\r\n    \"end\":\"2025-07-25T18:00:00.000Z\",\r\n    \"notes\": \"Interview with consulting AAA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/events"
+					},
+					"response": []
+				},
+				{
+					"name": "updateEvent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODY1NDI3YTY5MDkzOWM2MWQ1MmQ1ZmQiLCJuYW1lIjoiQ2Fyb2xpbmEiLCJpYXQiOjE3NTM0NjIxODcsImV4cCI6MTc1MzQ2OTM4N30.-pbcw3cDxR1fG0_xIGAYkxs2l2aODFOaz51pSMQhapQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"My  updated second event\",\r\n    \"start\": \"2025-07-25T13:00:00.000Z\",\r\n    \"end\":\"2025-07-25T18:00:00.000Z\",\r\n    \"notes\": \"The update event was executed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/events/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6883870dd3a1a5248310381c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEvent",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODY0OWI1NzcxZmYyNTU4ZGVkYzczMmYiLCJuYW1lIjoiU29maWEiLCJpYXQiOjE3NTI5MzI1ODMsImV4cCI6MTc1MjkzOTc4M30.Bxh5W3YlTb5Mj9uKwZJCQMVqfJyPIOkD-ClvDvZSNkE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/events/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:4000",
+			"type": "default"
+		}
+	]
+}
